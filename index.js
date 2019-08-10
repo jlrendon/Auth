@@ -6,6 +6,9 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const app = express();
 const verify = require('./middlewares/verifyToken');
+const cors = require('cors');
+
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.send(`<h1>SERVER</h1>`);

@@ -7,6 +7,10 @@ const saltRounds = 10;
 const app = express();
 const  verify = require('./middlewares/verifyToken');
 
+app.get('/', (req, res) => {
+    res.send(`<h1>SERVER</h1>`);
+    })
+
 mongoose.connect(process.env.MONGOURL, { useNewUrlParser: true }, (err) => {
     if (!err) {
         console.log('Mongo conectado correctamente');

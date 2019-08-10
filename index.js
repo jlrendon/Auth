@@ -1,15 +1,15 @@
 //require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser'); 
+const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const app = express();
-const  verify = require('./middlewares/verifyToken');
+const verify = require('./middlewares/verifyToken');
 
-app.get('/', (req, res) => {
+app.get('/', (req, res) => {
     res.send(`<h1>SERVER</h1>`);
-    })
+})
 
 mongoose.connect(process.env.MONGOURL, { useNewUrlParser: true }, (err) => {
     if (!err) {
@@ -48,7 +48,7 @@ const mongoUrl = 'mongodb+srv://devf31:cintanegra@cluster0-hde4c.gcp.mongodb.net
 mongoose.connect(mongoUrl, {useNewUrlParser: true}, (err) => {
     if(!err) {
         console.log('Mongo conectado correctamente');
-    }    
+    }
 }
 );
 
@@ -72,7 +72,7 @@ app.post('/new/user', (req, res) => {
             }
             else if (respuesta != null) {
                 res.status(500).json({message: `El correo ${params.email} ya existe`});
-            }            
+            }
             else {
                 bcrypt.genSalt(saltRounds, function(err, salt) {
                     bcrypt.hash(params.password, salt, function(err, hash) {
@@ -87,8 +87,8 @@ app.post('/new/user', (req, res) => {
                             res.status(201).json({status: 'Ok', data: newUser});
                         )
                     });
-                });                
-            }        
+                });
+            }
         });
     }
 //     //Se crea un nuevo modelo
